@@ -1,0 +1,29 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Number Validation Web Service Client</title>
+</head>
+<body>
+    <h2>Mobile Number Validation Web Service Client</h2>
+    Enter a 10-digit mobile number: <input type="text" id="mobileNumber" required>
+    <button onclick="validateMobileNumber()">Validate Mobile Number</button>
+    <div id="result"></div>
+
+    <script>
+        function validateMobileNumber() {
+            var mobileNumber = document.getElementById("mobileNumber").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:8080/MobileNumberValidationWebService/validateMobileNumber?mobileNumber=" + mobileNumber, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("result").innerText = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
